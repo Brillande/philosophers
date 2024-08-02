@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:07:15 by emedina-          #+#    #+#             */
-/*   Updated: 2024/07/29 05:19:30 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:17:26 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_data	*format(int ac, char **av)
 	dat->sleep = ft_atoi(av[4]);
 	dat->stop = 0;
 	dat->satiated = 0;
+	dat->one_dead = 0;
 	if (ac == 6)
 		dat->hungry = ft_atoi(av[5]);
 	else
@@ -61,7 +62,6 @@ t_philo	*setup(t_data *data)
 		philo[i].is_satiated = 0;
 		philo[i].lock_l_fork = 0;
 		philo[i].lock_r_fork = 0;
-		philo[i].one_dead = 1;
 		i++;
 	}
 	return (philo);

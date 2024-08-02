@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 04:49:43 by emedina-          #+#    #+#             */
-/*   Updated: 2024/07/29 05:03:59 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:10:12 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	unlock_second_fork(t_philo *philo)
 {
-	if (stop_or_continue(philo, 0) == 1 && philo->is_dead == 0
+	if (stop_or_continue(philo, 0) == 1
 		&& (philo->lock_l_fork == 1 || philo->lock_r_fork == 1))
 	{
 		if (philo->philos % 2 == 0 && philo->lock_r_fork == 1)

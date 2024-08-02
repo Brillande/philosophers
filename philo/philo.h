@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:07:36 by emedina-          #+#    #+#             */
-/*   Updated: 2024/07/29 05:16:04 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:17:02 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 	int				hungry;
 	int				satiated;
 	int				stop;
+	int				one_dead;
 	pthread_mutex_t	update;
 	struct timeval	start;
 }					t_data;
@@ -54,7 +55,6 @@ typedef struct s_philo
 	struct timeval	dead_of_hungry;
 	int				lock_l_fork;
 	int				lock_r_fork;
-	int				one_dead;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }					t_philo;
@@ -72,9 +72,9 @@ t_data				*format(int ac, char **av);
 void				destroy_free(pthread_mutex_t *forks,
 						t_philo *philos,
 						t_data *data);
-void				maneage_one_philo(t_philo *philo);
+void				maneage_one_thread(t_philo *philo);
 void				dining_alone(void *ptr);
-void				maneage_mult_philo(t_philo *philo);
+void				maneage_mult_thread(t_philo *philo);
 void				eat_pasta2(t_philo *philo);
 void				multiple_philo(void *ptr);
 void				unlock_second_fork(t_philo *philo);

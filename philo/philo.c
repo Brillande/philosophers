@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:09:15 by emedina-          #+#    #+#             */
-/*   Updated: 2024/07/29 04:59:10 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:11:27 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,20 @@ void	dining_loop(void *ptr)
 		eat_pasta(philo);
 		going_to_sleep(philo);
 		print(*philo, msg(THINK, philo->philos));
+		if (philo->lock_l_fork == 1)
+		{
+			pthread_mutex_unlock(philo->l_fork);
+			philo->lock_l_fork = 0;
+		}
+		if (philo->lock_r_fork == 1)
+		{
+			pthread_mutex_unlock(philo->r_fork);
+			philo->lock_r_fork = 0;
+		}
 	}
 }
 
-void	sartre_mode(t_philo *philo)
+void	maneage_one_thread(t_philo *philo)
 {
 	pthread_create(&philo[0].id, NULL, (void *)&dining_alone, &philo[0]);
 	pthread_detach(philo[0].id);
@@ -46,7 +56,7 @@ void	sartre_mode(t_philo *philo)
 		usleep(1000);
 }
 
-void	olstrom_mode(t_philo *philo)
+void	maneage_mult_thread(t_philo *philo)
 {
 	int	i;
 	int	n;
@@ -79,9 +89,9 @@ int	main(int ac, char **av)
 		if (forks == NULL)
 			forks_null(data, philo);
 		if (data->amount_of_philo == 1)
-			sartre_mode(philo);
+			maneage_one_thread(philo);
 		else
-			olstrom_mode(philo);
+			maneage_mult_thread(philo);
 		destroy_free(forks, philo, data);
 	}
 	else

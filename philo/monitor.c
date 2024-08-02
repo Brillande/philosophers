@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:09:50 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 08:23:40 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:13:41 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print(t_philo philo, t_msg *msg)
 		pthread_mutex_lock(&philo.data->update);
 		gettimeofday(&now, NULL);
 		milli = ms_after(msg->event_time, philo.data->start);
-		if(philo.data->one_dead == 0)
+		if (philo.data->one_dead == 0)
 			printf("%lu %i ", milli, philo.philos);
 		if (msg->state == FORK && philo.data->one_dead == 0)
 			printf("has taken a fork\n");
@@ -32,11 +32,7 @@ void	print(t_philo philo, t_msg *msg)
 			printf("is sleeping\n");
 		if (msg->state == THINK && philo.data->one_dead == 0)
 			printf("is thinking\n");
-		if (msg->state == DIE && philo.data->one_dead == 0)
-		{
-			printf("died\n");
-			philo.data->one_dead = 1;
-		}
+		die(msg, philo);
 		pthread_mutex_unlock(&philo.data->update);
 	}
 	free(msg);
@@ -93,5 +89,14 @@ void	is_alive(t_philo *philo)
 			philo->is_dead = 1;
 			pthread_mutex_unlock(&philo->data->update);
 		}
+	}
+}
+
+void	die(t_msg *msg, t_philo philo)
+{
+	if (msg->state == DIE && philo.data->one_dead == 0)
+	{
+		printf("died\n");
+		philo.data->one_dead = 1;
 	}
 }

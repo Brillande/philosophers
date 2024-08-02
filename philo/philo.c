@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:09:15 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 08:11:27 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:07:56 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	dining_loop(void *ptr)
 void	maneage_one_thread(t_philo *philo)
 {
 	pthread_create(&philo[0].id, NULL, (void *)&dining_alone, &philo[0]);
-	pthread_detach(philo[0].id);
+	pthread_join(philo[0].id, NULL);
 	while (stop_or_continue(philo, 0) == 0)
 		usleep(1000);
 }

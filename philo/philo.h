@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:07:36 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 08:17:02 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:14:22 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void				dining_alone(void *ptr);
 void				maneage_mult_thread(t_philo *philo);
 void				eat_pasta2(t_philo *philo);
 void				multiple_philo(void *ptr);
+void				die(t_msg *msg, t_philo philo);
 void				unlock_second_fork(t_philo *philo);
 size_t				ft_atoi(char *str);
 void				take_second_fork(t_philo *philo);

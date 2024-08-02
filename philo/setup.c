@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:07:15 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 08:17:26 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:07:28 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	destroy_free(pthread_mutex_t *forks, t_philo *philos, t_data *data)
 	}
 	pthread_mutex_unlock(&data->update);
 	pthread_mutex_destroy(&data->update);
-	free(forks);
 	free(data);
 	free(philos);
+	free(forks);
 }

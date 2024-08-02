@@ -6,13 +6,13 @@
 #    By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 01:37:40 by emedina-          #+#    #+#              #
-#    Updated: 2024/08/02 06:25:30 by emedina-         ###   ########.fr        #
+#    Updated: 2024/08/02 10:33:10 by emedina-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := philo
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror -pthread -fsanitize=thread -g3
+FLAGS    := -Wall -Wextra -Werror -pthread -g3 -pthread -pthread
 
 SRCS        :=      utils.c \
                           philo.c \

@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:07:36 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 11:14:22 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:45:43 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_msg
 pthread_mutex_t		*create_forks(t_philo *philo, int n);
 t_philo				*setup(t_data *data);
 t_data				*format(int ac, char **av);
+size_t				ft_strlen(const char *s);
 void				destroy_free(pthread_mutex_t *forks,
 						t_philo *philos,
 						t_data *data);

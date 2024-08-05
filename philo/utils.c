@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:06:31 by emedina-          #+#    #+#             */
-/*   Updated: 2024/07/29 04:29:10 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:48:17 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ size_t	ft_atoi(char *str)
 
 	i = 0;
 	result = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\r'
-		|| str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[0] == '+')
-		i++;
+	if (ft_strlen (str) == 0)
+	{
+		printf("only possitive numbers");
+		return (-2);
+	}
 	if (str[i] >= '0' && str[i] <= '9')
 	{
 		while (str[i] >= '0' && str[i] <= '9')

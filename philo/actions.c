@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:10:27 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 08:10:12 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/05 21:48:00 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void	eat_pasta(t_philo *philo)
 			if (done(philo, 0) == 1)
 				stop_or_continue(philo, 1);
 		}
-		usleep(philo->data->eat * 1000);
-		eat_pasta2(philo);
+		usleep (philo->data->eat * 1000);
 	}
 }
 
@@ -76,26 +75,7 @@ void	going_to_sleep(t_philo *philo)
 	if ((philo->is_dead == 0) && (stop_or_continue(philo, 0) == 0))
 	{
 		print(*philo, msg(SLEEP, philo->philos));
-		usleep(philo->data->sleep * 1000);
+		usleep(philo->data->sleep * 900);
 		is_alive(philo);
 	}
-}
-
-void	unlock_first_fork(t_philo *philo)
-{
-	if (stop_or_continue(philo, 0) == 1 && (philo->lock_l_fork == 1
-			|| philo->lock_r_fork == 1))
-	{
-		if (philo->philos % 2 == 0 && philo->lock_l_fork == 1)
-		{
-			pthread_mutex_unlock(philo->l_fork);
-			philo->lock_l_fork = 0;
-		}
-		else if (philo->philos % 2 == 1 && philo->lock_r_fork == 1)
-		{
-			pthread_mutex_unlock(philo->r_fork);
-			philo->lock_r_fork = 0;
-		}
-	}
-	unlock_second_fork(philo);
 }

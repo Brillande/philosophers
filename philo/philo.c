@@ -6,7 +6,7 @@
 /*   By: emedina- <emedina-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:09:15 by emedina-          #+#    #+#             */
-/*   Updated: 2024/08/02 11:07:56 by emedina-         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:50:32 by emedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ void	dining_loop(void *ptr)
 	{
 		take_first_fork(philo);
 		eat_pasta(philo);
-		going_to_sleep(philo);
-		print(*philo, msg(THINK, philo->philos));
-		if (philo->lock_l_fork == 1)
-		{
-			pthread_mutex_unlock(philo->l_fork);
-			philo->lock_l_fork = 0;
-		}
 		if (philo->lock_r_fork == 1)
 		{
-			pthread_mutex_unlock(philo->r_fork);
 			philo->lock_r_fork = 0;
+			pthread_mutex_unlock(philo->r_fork);
 		}
+		if (philo->lock_l_fork == 1)
+		{
+			philo->lock_l_fork = 0;
+			pthread_mutex_unlock(philo->l_fork);
+		}
+		going_to_sleep(philo);
+		print(*philo, msg(THINK, philo->philos));
 	}
 }
 
